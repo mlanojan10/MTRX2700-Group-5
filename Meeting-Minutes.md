@@ -9,6 +9,11 @@ Topics Covered:
 Key Discussions:
 	How to move a file into a repository
 
+  	1.9: L01-digital-io-example:
+		b) This code lights up 4 LEDs in the shape of a plus (+)
+		   By cycling through each step in the debug mode, the plus shape rotates around.
+  		   This can only be observed in the debug mode by stepping through each line of the code.
+   		
 Decisions made:
 
 Actionables:
