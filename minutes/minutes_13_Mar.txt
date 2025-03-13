@@ -5,8 +5,12 @@ Attendees: Zhenyu Dai, Wenxuan Duan, Jacqueline Ford, Melvin Lanojan
 Topics Covered: 
 
 Key Discussions: 
-  How to code the conversion to upper/lower functions
+  Who does which task
 
 Decisions made:
+  Melvin does 1.3.2 b & c
+  Jacqueline does 1.4.2
+  Wenxuan does Exercise 4 (1.6)
+  Zhenyu does Exercise 5 (1.7)
 
 Actionables:
