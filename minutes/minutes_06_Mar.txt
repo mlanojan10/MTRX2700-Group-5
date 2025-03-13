@@ -1,11 +1,12 @@
 
 06/03/25 3pm-5pm
 
-Attendees: Zhenyu Dai, Wenxuan Duan, Jacqueline Ford, Melvin Lanojan
+Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
 
 Topics Covered: 
 
 Key Discussions: 
+  How to code the conversion to upper/lower functions
 
 Decisions made:
 
