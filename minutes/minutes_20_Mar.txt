@@ -1,1 +1,17 @@
-hi
+20/03/25 3pm-5pm
+
+Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
+
+Topics Covered: 
+
+Key Discussions: 
+  Working on Exercise 5
+  Uploading our work to the github
+
+Decisions made:
+  Melvin does Exercise 1
+  Jacqueline does Exercise 2
+  Wenxuan does Exercise 4
+  Zhenyu does Exercise 3 
+
+Actionables:
