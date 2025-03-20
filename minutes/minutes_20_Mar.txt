@@ -9,9 +9,7 @@ Key Discussions:
   Uploading our work to the github
 
 Decisions made:
-  Melvin does Exercise 1
-  Jacqueline does Exercise 2
-  Wenxuan does Exercise 4
-  Zhenyu does Exercise 3 
+  Start Exercise 5
 
 Actionables:
+  Upload work
