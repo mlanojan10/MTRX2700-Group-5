@@ -1,0 +1,16 @@
+13/03/25 3pm-5pm
+
+Attendees: Zhenyu Dai, Wenxuan Duan, Jacqueline Ford, Melvin Lanojan
+
+Topics Covered: 
+
+Key Discussions: 
+  Who does which task
+
+Decisions made:
+  Melvin does Exercise 1
+  Jacqueline does Exercise 2
+  Wenxuan does Exercise 4
+  Zhenyu does Exercise 3 
+
+Actionables:

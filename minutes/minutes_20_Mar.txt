@@ -1,0 +1,19 @@
+20/03/25 2pm-5pm
+
+Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
+
+Topics Covered: 
+
+Key Discussions: 
+  Jacqueline is still wroking on Exercise 2 (Missing a delay loop)
+  Zhenyu explained all of Exercise 3
+  Working on Exercise 5
+  Uploading our work to the github
+  Organise meeting outside of lab time
+
+Decisions made:
+  Start Exercise 5
+
+Actionables:
+  Upload work
+  Have meeting Tuesday 10am

@@ -1,0 +1,15 @@
+27/02/25 3pm-5pm
+
+Attendees: Zhenyu Dai, Wenxuan Duan, Jacqueline Ford, Melvin Lanojan
+
+Topics Covered: How to use GitHub
+
+Key Discussions: How to move a file into a repository
+
+1.9: L01-digital-io-example:
+	b) This code lights up 4 LEDs in the shape of a plus (+)
+	   By cycling through each step in the debug mode, the plus shape rotates around.
+	   This can only be observed in the debug mode by stepping through each line of the code.
+Decisions made:
+	Create instagram group chat as mode of communication
+Actionables:
