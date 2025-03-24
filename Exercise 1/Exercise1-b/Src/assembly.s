@@ -4,7 +4,7 @@
 .global main
 
 .data
-input_string: .asciz "RACERCaR"  @ Change this string to test different cases
+input_string: .asciz "RACERCaR"  @ Change string to test different cases
 
 .text
 
