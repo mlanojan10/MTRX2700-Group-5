@@ -57,6 +57,34 @@
     Exercise 2:
 
     Exercise 3:
+      For a:  
+        Demonstrates how to receive data via USART1 from the computer's serial port.  
+        The microcontroller listens for incoming messages and stores them upon receipt.  
+        This sets the foundation for later transmission and forwarding exercises.
+      
+      For b:  
+        Demonstrates how to transmit data from the microcontroller to the computer using USART1.  
+        The message is predefined and sent out through the serial port.  
+        Useful for testing basic transmission and UART configuration.
+      
+      For c:  
+        Demonstrates how to change the clock speed and configure a different Baud rate.  
+        You can observe how varying the system clock affects serial communication.  
+        This is helpful for understanding timing sensitivity in UART communication.
+      
+      For d:  
+        Demonstrates message forwarding using USART1.  
+        The microcontroller receives a message from the computer via USART1 and immediately transmits it back.  
+        This tests both the receive and transmit pathways and verifies correct forwarding logic in a single microcontroller setup.
+      
+      For e:  
+        Demonstrates a port-forwarding process between two microcontrollers.  
+        - The first computer sends a message to the first microcontroller via USART1.  
+        - The first microcontroller forwards the message using UART4 to the second microcontroller.  
+        - The second microcontroller receives the message via UART5.  
+        - The message is then transmitted to a second computer via USART1.  
+        This exercise combines the techniques from a), b), and d), incorporating multi-port communication and end-to-end message passing.
+
 
     Exercise 4:
 
