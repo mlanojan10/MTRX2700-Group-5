@@ -1,1 +1,25 @@
-hi
+25/03/25 10am-2pm
+
+Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
+
+Topics Covered: 
+  Lab demonstration 
+  Code explanations
+  Uploading completed exercises
+
+Key Discussions: 
+  Jacqueline is still wroking on Exercise 2
+  Finishing up Exercise 5
+  Uploading our work to the github
+  Elsa finished exercise 4
+
+Decisions made:
+  Melvin demonstrate exercise 1
+  Jacqueline demonstrate exercise 2
+  Zhenyu demonstrate exercise 3
+  Elsa demonstrate exercise 4
+
+Actionables:
+  Clean up code and fix up comments
+  Upload work to GitHub
+  
