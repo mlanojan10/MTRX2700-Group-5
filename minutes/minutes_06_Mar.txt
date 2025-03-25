@@ -4,10 +4,13 @@
 Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
 
 Topics Covered: 
+  Exercise 1
 
 Key Discussions: 
   How to code the conversion to upper/lower functions
 
 Decisions made:
+  Fix up code for lab demosntration
 
 Actionables:
+  Melvin will fix up the Exercise 1 code

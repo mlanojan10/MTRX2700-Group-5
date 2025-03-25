@@ -3,6 +3,9 @@
 Attendees: Zhenyu Dai, Jacqueline Ford, Melvin Lanojan
 
 Topics Covered: 
+  Explaining code
+  Finish off exercises
+  Out of lab meeting
 
 Key Discussions: 
   Jacqueline is still wroking on Exercise 2 (Missing a delay loop)
