@@ -1,0 +1,6 @@
+"./Src/assembly.o"
+"./Src/cipher.o"
+"./Src/definitions.o"
+"./Src/initialise.o"
+"./Src/palindromecheck .o"
+"./Startup/startup_stm32f303vctx.o"
