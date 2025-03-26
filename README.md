@@ -77,7 +77,7 @@
         Once all the LEDs are off again, the code will return to its initial function of turning them on one-by-one.
 
       For d:
-        Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+        Go to 'Exercise 2' folder and use files from 'Exercise2d'.
         Access the assembly.s file.
         In line 13 is the ascii_string which will be analyzed by the code.
         Replace the text inside "Hello\0" with anything of your choosing.
