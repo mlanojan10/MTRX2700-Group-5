@@ -109,3 +109,19 @@
       
 
   Test procedures:
+
+    Exercise 1:
+      For a:
+        
+      
+      For b:
+      
+      For c:
+
+    Exercise 2:
+
+    Exercise 3:
+
+    Exercise 4:
+
+    Exercise 5:
