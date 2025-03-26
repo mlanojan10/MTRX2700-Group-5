@@ -85,7 +85,7 @@
         It will then count the number of consonants and store them in a different register. Special characters are ignored.
         The LEDs will defaultly display the number of vowels in bit representation.
         Once the button is pressed, they will instead display the number of consonants.
-        Pressing the button again will return it to its original state.
+        Pressing the button again will return the LEDs to their original state of displaying vowels.
         
 
     Exercise 3:
