@@ -1,0 +1,18 @@
+26/03/25 1pm-3pm
+
+Attendees: Zhenyu Dai, Melvin Lanojan
+
+Topics Covered: 
+  Completing the GitHub README.md file
+  Exercise 5
+
+Key Discussions: 
+  Finishing up exercise 5
+  Changing our codes for exercise 5
+
+Decisions made:
+  Melvin will fix up his palindrome checker and caeser cipher code so that it is compatible with the rest of the code in exercise 5
+
+Actionables:
+  Finish off exercise 5
+  Complete README.md file
