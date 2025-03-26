@@ -10,7 +10,8 @@ Key Discussions:
   How to code the conversion to upper/lower functions
 
 Decisions made:
-  Fix up code for lab demosntration
+  Fix up code for lab demonstration
 
 Actionables:
   Melvin will fix up the Exercise 1 code
+  Everyone look into the other exercises and what to do
