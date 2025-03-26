@@ -71,6 +71,7 @@
         The led_state is set in line 13 to have all the LEDs off initally.
         The code will then turn them on one-by-one with each button press.
         Once all the LEDs are on, each button press will turn them off one-by-one.
+        Once all the LEDs are off again, the code will return to its initial function of turning them on one-by-one.
 
     Exercise 3:
       For a:  
