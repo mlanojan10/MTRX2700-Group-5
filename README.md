@@ -57,21 +57,36 @@
     Exercise 2:
       For a:
         Go to 'Exercise 2' folder and use files from 'Exercise2-a'.
+        Access the assembly.s file.
         The string of bits in line 24 controls which LEDs will be on at a time, change the values to create your own pattern.
         A '1' in the string means the corresponding LED will be on initally, and a '0' means the corresponding LED will be off initially.
         The code will alternate between the initally lit up LEDs being on and the initally off LEDs being on.
 
       For b:
         Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+        Access the assembly.s file.
         The led_state is set in line 13 to have all the LEDs off initally.
         The code will then turn them on one-by-one with each button press.
 
       For c:
         Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+        Access the assembly.s file.
         The led_state is set in line 13 to have all the LEDs off initally.
         The code will then turn them on one-by-one with each button press.
         Once all the LEDs are on, each button press will turn them off one-by-one.
         Once all the LEDs are off again, the code will return to its initial function of turning them on one-by-one.
+
+      For d:
+        Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+        Access the assembly.s file.
+        In line 13 is the ascii_string which will be analyzed by the code.
+        Replace the text inside "Hello\0" with anything of your choosing.
+        The code will count the number of vowels and store them in a register.
+        It will then count the number of consonants and store them in a different register. Special characters are ignored.
+        The LEDs will defaultly display the number of vowels in bit representation.
+        Once the button is pressed, they will instead display the number of consonants.
+        Pressing the button again will return it to its original state.
+        
 
     Exercise 3:
       For a:  
