@@ -123,6 +123,7 @@
         When you continue stepping through and reach 'finished_string', the monitor should display a fully converted string.
 
       For b:
+        
       
       For c:
 
