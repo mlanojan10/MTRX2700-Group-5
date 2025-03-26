@@ -58,7 +58,7 @@
       For a:
         Go to 'Exercise 2' folder and use files from 'Exercise2-a'.
         Access the assembly.s file.
-        The string of bits in line 24 controls which LEDs will be on at a time, change the values to create your own pattern.
+        The string of bits in line 25 controls which LEDs will be on at a time, change the values to create your own pattern.
         A '1' in the string means the corresponding LED will be on initally, and a '0' means the corresponding LED will be off initially.
         The code will alternate between the initally lit up LEDs being on and the initally off LEDs being on.
 
@@ -143,6 +143,10 @@
       For c:
 
     Exercise 2:
+      For a:
+        Change the 0s and 1s after '0b' in line 25 (LDR R4, =0b00010001) to a desired pattern. These 8 numbers each correspond to an individual LED on the discovery board. Placing a 0 in the string means that LED will initially be off, and placing a 1 means that the LED will initially be on. The LEDs will then alternate between being on and being off continuously.
+        Comment out line 35 to leave the LEDs in their initial state to check if it is as expected.
+        Change the delay size in line 42 to a larger number to see the LEDs alternate slower for a better look at the transition.
 
     Exercise 3:
 
