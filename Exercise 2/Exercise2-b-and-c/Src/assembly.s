@@ -18,33 +18,33 @@ led_state: .byte 0b00000000
 main:
 	BL enable_peripheral_clocks	@ Enable clocks for peripherals
 	BL initialise_discovery_board	@ Initialize Discovery board I/O
-	BL change_led_state	@ Turn LEDs on one-by-one
+	BL turn_on_leds	@ Turn LEDs on one-by-one
 
 
-change_led_state:
+turn_on_leds:
 	LDR R4, =led_state	@ Load LED state address
 	LDRB R5, [R4]	@ Load LED state value
 	LDR R0, =GPIOE	@ Load GPIOE base address
 	STRB R5, [R0, #ODR + 1]	@ Update LED output
 
 
-wait_for_button:
+idle_on:
 	LDR R0, =GPIOA	@ Load GPIOA base address
 	LDRB R1, [R0, #IDR]	@ Read button input state
 	ANDS R1, #0X01	@ Check if button is pressed
-	BEQ wait_for_button	@ Wait until button is pressed
+	BEQ idle_on	@ Wait until button is pressed
 
-	BL pressed	@ Handle button press
+	BL button_down	@ Handle button press
 
-wait_for_button_off:
+idle_off:
 	LDR R0, =GPIOA	@ Load GPIOA base address
 	LDRB R1, [R0, #IDR]	@ Read button input state
 	ANDS R1, #0X01	@ Check if button is pressed
-	BEQ wait_for_button_off	@ Wait until button is pressed
+	BEQ idle_off	@ Wait until button is pressed
 
 	BL turn_off_loop	@ Handle button press
 
-pressed:
+button_down:
 	LDR R4, =led_state	@ Load LED state address
 	LDRB R5, [R4]	@ Load LED state value
 
@@ -60,7 +60,7 @@ pressed:
 	STRB R5, [R0, #ODR + 1]	@ Update LED output
 
 	BL delay_function	@ Delay for visibility
-	B wait_for_button	@ Wait for next button press
+	B idle_on	@ Wait for next button press
 
 
 turn_off_leds:
@@ -69,7 +69,7 @@ turn_off_leds:
 
 turn_off_loop:
 	CMP R5, #0x00	@ Check if all LEDs are off
-    BEQ wait_for_button	@ If so, return to waiting state
+    BEQ idle_on	@ If so, return to waiting state
 
 	LSR R5, R5, #1	@ Shift right to turn off one LED
 	STRB R5, [R4]	@ Store updated LED state
@@ -77,7 +77,7 @@ turn_off_loop:
 	STRB R5, [R0, #ODR + 1]	@ Update LED output
 
 	BL delay_function	@ Delay for visibility
-	BL wait_for_button_off
+	BL idle_off
 	B turn_off_loop	@ Continue turning off LEDs
 
 

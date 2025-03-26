@@ -120,13 +120,13 @@ main:
  80001ea:	f7ff fff3 	bl	80001d4 <enable_peripheral_clocks>
 	BL initialise_discovery_board	@ Initialize Discovery board I/O
  80001ee:	f7ff fff7 	bl	80001e0 <initialise_discovery_board>
-	BL change_led_state	@ Turn LEDs on one-by-one
- 80001f2:	f000 f800 	bl	80001f6 <change_led_state>
+	BL turn_on_leds	@ Turn LEDs on one-by-one
+ 80001f2:	f000 f800 	bl	80001f6 <turn_on_leds>
 
-080001f6 <change_led_state>:
+080001f6 <turn_on_leds>:
 
 
-change_led_state:
+turn_on_leds:
 	LDR R4, =led_state	@ Load LED state address
  80001f6:	4c1c      	ldr	r4, [pc, #112]	@ (8000268 <done+0xe>)
 	LDRB R5, [R4]	@ Load LED state value
@@ -136,40 +136,40 @@ change_led_state:
 	STRB R5, [R0, #ODR + 1]	@ Update LED output
  80001fc:	7545      	strb	r5, [r0, #21]
 
-080001fe <wait_for_button>:
+080001fe <idle_on>:
 
 
-wait_for_button:
+idle_on:
 	LDR R0, =GPIOA	@ Load GPIOA base address
  80001fe:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
 	LDRB R1, [R0, #IDR]	@ Read button input state
  8000202:	7c01      	ldrb	r1, [r0, #16]
 	ANDS R1, #0X01	@ Check if button is pressed
  8000204:	f011 0101 	ands.w	r1, r1, #1
-	BEQ wait_for_button	@ Wait until button is pressed
- 8000208:	d0f9      	beq.n	80001fe <wait_for_button>
+	BEQ idle_on	@ Wait until button is pressed
+ 8000208:	d0f9      	beq.n	80001fe <idle_on>
 
-	BL pressed	@ Handle button press
- 800020a:	f000 f808 	bl	800021e <pressed>
+	BL button_down	@ Handle button press
+ 800020a:	f000 f808 	bl	800021e <button_down>
 
-0800020e <wait_for_button_off>:
+0800020e <idle_off>:
 
-wait_for_button_off:
+idle_off:
 	LDR R0, =GPIOA	@ Load GPIOA base address
  800020e:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
 	LDRB R1, [R0, #IDR]	@ Read button input state
  8000212:	7c01      	ldrb	r1, [r0, #16]
 	ANDS R1, #0X01	@ Check if button is pressed
  8000214:	f011 0101 	ands.w	r1, r1, #1
-	BEQ wait_for_button_off	@ Wait until button is pressed
- 8000218:	d0f9      	beq.n	800020e <wait_for_button_off>
+	BEQ idle_off	@ Wait until button is pressed
+ 8000218:	d0f9      	beq.n	800020e <idle_off>
 
 	BL turn_off_loop	@ Handle button press
  800021a:	f000 f811 	bl	8000240 <turn_off_loop>
 
-0800021e <pressed>:
+0800021e <button_down>:
 
-pressed:
+button_down:
 	LDR R4, =led_state	@ Load LED state address
  800021e:	4c12      	ldr	r4, [pc, #72]	@ (8000268 <done+0xe>)
 	LDRB R5, [R4]	@ Load LED state value
@@ -196,8 +196,8 @@ pressed:
 
 	BL delay_function	@ Delay for visibility
  8000236:	f000 f80f 	bl	8000258 <delay_function>
-	B wait_for_button	@ Wait for next button press
- 800023a:	e7e0      	b.n	80001fe <wait_for_button>
+	B idle_on	@ Wait for next button press
+ 800023a:	e7e0      	b.n	80001fe <idle_on>
 
 0800023c <turn_off_leds>:
 
@@ -211,10 +211,10 @@ turn_off_leds:
 08000240 <turn_off_loop>:
 
 turn_off_loop:
-	CMP R5, #0x00
+	CMP R5, #0x00	@ Check if all LEDs are off
  8000240:	2d00      	cmp	r5, #0
-    BEQ wait_for_button
- 8000242:	d0dc      	beq.n	80001fe <wait_for_button>
+    BEQ idle_on	@ If so, return to waiting state
+ 8000242:	d0dc      	beq.n	80001fe <idle_on>
 
 	LSR R5, R5, #1	@ Shift right to turn off one LED
  8000244:	ea4f 0555 	mov.w	r5, r5, lsr #1
@@ -227,8 +227,8 @@ turn_off_loop:
 
 	BL delay_function	@ Delay for visibility
  800024e:	f000 f803 	bl	8000258 <delay_function>
-	BL wait_for_button_off
- 8000252:	f7ff ffdc 	bl	800020e <wait_for_button_off>
+	BL idle_off
+ 8000252:	f7ff ffdc 	bl	800020e <idle_off>
 	B turn_off_loop	@ Continue turning off LEDs
  8000256:	e7f3      	b.n	8000240 <turn_off_loop>
 
