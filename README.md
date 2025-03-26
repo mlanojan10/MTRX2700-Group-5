@@ -55,6 +55,22 @@
         The final encoded/decoded string will be stored in R0. Convert it into ASCII to read the string.
         
     Exercise 2:
+    For a:
+      Go to 'Exercise 2' folder and use files from 'Exercise2-a'.
+      The string of bits in line 24 controls which LEDs will be on at a time, change the values to create your own pattern.
+      A '1' in the string means the corresponding LED will be on initally, and a '0' means the corresponding LED will be off initially.
+      The code will alternate between the initally lit up LEDs being on and the initally off LEDs being on.
+
+    For b:
+      Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+      The led_state is set in line 13 to have all the LEDs off initally.
+      The code will then turn them on one-by-one with each button press.
+
+    For c:
+      Go to 'Exercise 2' folder and use files from 'Exercise2-b-and-c'.
+      The led_state is set in line 13 to have all the LEDs off initally.
+      The code will then turn them on one-by-one with each button press.
+      Once all the LEDs are on, each button press will turn them off one-by-one.
 
     Exercise 3:
       For a:  
