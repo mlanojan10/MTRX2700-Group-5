@@ -112,8 +112,16 @@
 
     Exercise 1:
       For a:
-        
-      
+        Change the 'input_string' to whatever you want. Have a mix of upper or lower case letters, and special characters.
+        Change line 17 to set the code to the conversion mode you want to test.
+        With the 'assembly.s file open, press the debug button, which will run the program in debug mode.
+        Look for the 'registers' tab, and have 'General Register' open.
+        Click on R1 (This is where the string is stored), and copy the hex value address of R1.
+        Open the 'memory' tab, press the plus button and insert the address. Close the tab it opens, and then click ASCII to view the string.
+        Step through the code.
+        When you step through the code and reach the 'conversion_to_upper' or 'conversion_to_lower' function based on your module, look at the monitor, and you will notice that as it cycles through the string past these modules, the string stored in R1 will convert to either upper or lower case.
+        When you continue stepping through and reach 'finished_string', the monitor should display a fully converted string.
+
       For b:
       
       For c:
