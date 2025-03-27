@@ -11,7 +11,7 @@ input_string: .asciz "Hello, World!"  @ String to encode/decode
 @ Exercise  1 c)
 main:
     LDR R1, =input_string  @ Load address of input string into R1
-    MOV R2, #3             @ Shift value (Change for encoding/decoding)
+    MOV R2, #-1            @ Shift value (Change for encoding/decoding)
 
     BL caesar_cipher       @ Call Caesar Cipher function
 
@@ -42,17 +42,18 @@ check_lower:
 @ Shift uppercase letters
 shift_upper:
     ADD R4, R4, R2         @ Apply shift
-    CMP R4, #'Z'           @ Check if it exceeds 'Z'
-    BLE store_char         @ If within range, store
-    SUB R4, R4, #26        @ Wrap around
+    CMP R4, #'A'           @ Check if it goes below 'A'
+    BGE store_char         @ If within range, store
+    ADD R4, R4, #26        @ Wrap around to 'Z'
     B store_char
 
 @ Shift lowercase letters
 shift_lower:
     ADD R4, R4, R2         @ Apply shift
-    CMP R4, #'z'           @ Check if it exceeds 'z'
-    BLE store_char         @ If within range, store
-    SUB R4, R4, #26        @ Wrap around
+    CMP R4, #'a'           @ Check if it goes below 'a'
+    BGE store_char         @ If still within range, store
+    ADD R4, R4, #26        @ Wrap around by adding 26
+    B store_char
 
 store_char:
     STRB R4, [R3]          @ Store modified character
