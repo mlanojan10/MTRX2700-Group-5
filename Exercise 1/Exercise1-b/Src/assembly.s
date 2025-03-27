@@ -20,7 +20,7 @@ main:
 
 @ Function to compute string length
 string_length:
-    MOV R3, #0                   @ Initialize counter
+    MOV R3, #0                   @ Initialise counter
 length_loop:
     LDRB R2, [R1, R3]            @ Load byte from string
     CMP R2, #0                   @ Check if null terminator
@@ -32,8 +32,8 @@ length_done:
 
 @ Palindrome checker (case-insensitive)
 palindrome_checker:
-    MOV R4, #0             		 @ Initialize front index (R4)
-    MOV R5, R3             		 @ Initialize back index (R5)
+    MOV R4, #0             		 @ Initialise front index (R4)
+    MOV R5, R3             		 @ Initialise back index (R5)
 
 palindrome_loop:
     CMP R4, R5            	     @ Check if front index meets or crosses back index
