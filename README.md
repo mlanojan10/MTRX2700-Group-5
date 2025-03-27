@@ -204,6 +204,16 @@
           Change the value of the bit string in line 13 to test whether the LED display is working properly. Change all of the 0s after '0b' to 1s to test if there is an issue with the way the LEDs turn off.
           Change the value of #1 in line 54 to change the next led that will turn on with button press. (Eg. if you change it to #2, every second LED will turn on with button press.) This will also allow you to check that the LEDs do not start turning off unless they are all on)
           Change the value of #1 in line 73 to change how many leds will turn off with button press. (Eg. if you change it to #2, LEDs will turn off in pairs on button press.) This will allow you to check if they are turning off correctly.
+
+        For d:
+        Change the string "Hello\0" in line 13 to whatever string you want to be analyzed. For testing it is easier to use a small amount of characters so that you know the bit value of the number of vowels and consonants.
+        To test whether the LEDs are correctly displaying the vowel and consonant registers, change the values loaded into R4 and R5 in the main function from 0, then jump directly to display_result. They LEDs should defaulty display whatever is loaded into R4, then change to the number loaded into R5 on button press. Example:
+          MOV R4, #10 @ Loads a value of 10 into the vowel count
+          MOV R5, #16 @ Loads a value of 16 into the consonant count
+          BL display_result
+        This will allow you to see if there is an issue with the counting logic.
+          
+
           
 
     Exercise 3:
