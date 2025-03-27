@@ -18,14 +18,6 @@ led_state: .byte 0b00000000
 main:
 	BL enable_peripheral_clocks	@ Enable clocks for peripherals
 	BL initialise_discovery_board	@ Initialize Discovery board I/O
-	BL turn_on_leds	@ Turn LEDs on one-by-one
-
-
-turn_on_leds:
-	LDR R4, =led_state	@ Load LED state address
-	LDRB R5, [R4]	@ Load LED state value
-	LDR R0, =GPIOE	@ Load GPIOE base address
-	STRB R5, [R0, #ODR + 1]	@ Update LED output
 
 
 idle_on:
@@ -52,7 +44,7 @@ button_down:
 	BEQ turn_off_leds	@ If so, start turning them off
 
 	LSL R5, R5, #1 @ Change number of LEDs on
-    	ORR R5, R5, #0x01
+    ORR R5, R5, #0x01
 
 	STRB R5, [R4]	@ Store updated LED state
 	LDR R0, =GPIOE	@ Load GPIOE base address
