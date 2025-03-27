@@ -1,0 +1,402 @@
+
+Exercise4-c part.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000194  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000190  08000194  08000194  00010194  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000324  0800032c  0001032c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  08000324  08000324  0001032c  2**0
+                  CONTENTS
+  4 .ARM          00000000  08000324  08000324  0001032c  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  08000324  0800032c  0001032c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08000324  08000324  00010324  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .fini_array   00000004  08000328  08000328  00010328  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .data         00000000  20000000  20000000  0001032c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .ccmram       00000000  10000000  10000000  0001032c  2**0
+                  CONTENTS
+ 10 .bss          0000001c  20000000  20000000  00020000  2**2
+                  ALLOC
+ 11 ._user_heap_stack 00000604  2000001c  2000001c  00020000  2**0
+                  ALLOC
+ 12 .ARM.attributes 00000030  00000000  00000000  0001032c  2**0
+                  CONTENTS, READONLY
+ 13 .comment      00000043  00000000  00000000  0001035c  2**0
+                  CONTENTS, READONLY
+ 14 .debug_line   0000010b  00000000  00000000  0001039f  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_line_str 00000090  00000000  00000000  000104aa  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_info   00000048  00000000  00000000  0001053a  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_abbrev 00000026  00000000  00000000  00010582  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_aranges 00000048  00000000  00000000  000105a8  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .debug_str    00000091  00000000  00000000  000105f0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 20 .debug_rnglists 00000019  00000000  00000000  00010681  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 21 .debug_frame  0000002c  00000000  00000000  0001069c  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000194 <__do_global_dtors_aux>:
+ 8000194:	b510      	push	{r4, lr}
+ 8000196:	4c05      	ldr	r4, [pc, #20]	; (80001ac <__do_global_dtors_aux+0x18>)
+ 8000198:	7823      	ldrb	r3, [r4, #0]
+ 800019a:	b933      	cbnz	r3, 80001aa <__do_global_dtors_aux+0x16>
+ 800019c:	4b04      	ldr	r3, [pc, #16]	; (80001b0 <__do_global_dtors_aux+0x1c>)
+ 800019e:	b113      	cbz	r3, 80001a6 <__do_global_dtors_aux+0x12>
+ 80001a0:	4804      	ldr	r0, [pc, #16]	; (80001b4 <__do_global_dtors_aux+0x20>)
+ 80001a2:	f3af 8000 	nop.w
+ 80001a6:	2301      	movs	r3, #1
+ 80001a8:	7023      	strb	r3, [r4, #0]
+ 80001aa:	bd10      	pop	{r4, pc}
+ 80001ac:	20000000 	.word	0x20000000
+ 80001b0:	00000000 	.word	0x00000000
+ 80001b4:	0800030c 	.word	0x0800030c
+
+080001b8 <frame_dummy>:
+ 80001b8:	b508      	push	{r3, lr}
+ 80001ba:	4b03      	ldr	r3, [pc, #12]	; (80001c8 <frame_dummy+0x10>)
+ 80001bc:	b11b      	cbz	r3, 80001c6 <frame_dummy+0xe>
+ 80001be:	4903      	ldr	r1, [pc, #12]	; (80001cc <frame_dummy+0x14>)
+ 80001c0:	4803      	ldr	r0, [pc, #12]	; (80001d0 <frame_dummy+0x18>)
+ 80001c2:	f3af 8000 	nop.w
+ 80001c6:	bd08      	pop	{r3, pc}
+ 80001c8:	00000000 	.word	0x00000000
+ 80001cc:	20000004 	.word	0x20000004
+ 80001d0:	0800030c 	.word	0x0800030c
+
+080001d4 <enable_timer2_clock>:
+.text
+@ define code
+
+enable_timer2_clock:
+
+	LDR R0, =RCC	@ load the base address for the timer
+ 80001d4:	4823      	ldr	r0, [pc, #140]	; (8000264 <LED_off_loop+0x10>)
+	LDR R1, [R0, APB1ENR] 	@ load the peripheral clock control register
+ 80001d6:	69c1      	ldr	r1, [r0, #28]
+	ORR R1, 1 << TIM2EN @ store a 1 in bit for the TIM2 enable flag
+ 80001d8:	f041 0101 	orr.w	r1, r1, #1
+	STR R1, [R0, APB1ENR] @ enable the timer
+ 80001dc:	61c1      	str	r1, [r0, #28]
+	BX LR @ return
+ 80001de:	4770      	bx	lr
+
+080001e0 <enable_peripheral_clocks>:
+
+
+@ function to enable the clocks for the peripherals we are using (A, C and E)
+enable_peripheral_clocks:
+	LDR R0, =RCC  @ load the address of the RCC address boundary (for enabling the IO clock)
+ 80001e0:	4820      	ldr	r0, [pc, #128]	; (8000264 <LED_off_loop+0x10>)
+	LDR R1, [R0, #AHBENR]  @ load the current value of the peripheral clock registers
+ 80001e2:	6941      	ldr	r1, [r0, #20]
+	ORR R1, 1 << 21 | 1 << 19 | 1 << 17  @ 21st bit is enable GPIOE clock, 19 is GPIOC, 17 is GPIOA clock
+ 80001e4:	f441 1128 	orr.w	r1, r1, #2752512	; 0x2a0000
+	STR R1, [R0, #AHBENR]  @ store the modified register back to the submodule
+ 80001e8:	6141      	str	r1, [r0, #20]
+	BX LR @ return
+ 80001ea:	4770      	bx	lr
+
+080001ec <initialise_discovery_board>:
+
+
+@ initialise the discovery board I/O (just outputs: inputs are selected by default)
+initialise_discovery_board:
+	LDR R0, =GPIOE 	@ load the address of the GPIOE register into R0
+ 80001ec:	481e      	ldr	r0, [pc, #120]	; (8000268 <LED_off_loop+0x14>)
+	LDR R1, =0x5555  @ load the binary value of 01 (OUTPUT) for each port in the upper two bytes
+ 80001ee:	f245 5155 	movw	r1, #21845	; 0x5555
+					 @ as 0x5555 = 01010101 01010101
+	STRH R1, [R0, #MODER + 2]   @ store the new register values in the top half word representing
+ 80001f2:	8041      	strh	r1, [r0, #2]
+								@ the MODER settings for pe8-15
+	BX LR @ return from function call
+ 80001f4:	4770      	bx	lr
+
+080001f6 <trigger_prescaler>:
+
+	@ In your code, you should be using the ARR register to
+	@ set the maximum count for the timer
+
+	@ store a value for the prescaler
+	LDR R0, =TIM2	@ load the base address for the timer
+ 80001f6:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
+
+	LDR R1, =0xf4240 @ make the timer overflow after counting to 1000000
+ 80001fa:	491c      	ldr	r1, [pc, #112]	; (800026c <LED_off_loop+0x18>)
+	STR R1, [R0, TIM_ARR] @ set the ARR register
+ 80001fc:	62c1      	str	r1, [r0, #44]	; 0x2c
+
+	LDR R8, =0x00
+ 80001fe:	f04f 0800 	mov.w	r8, #0
+	STR R8, [R0, TIM_CNT] @ reset the clock
+ 8000202:	f8c0 8024 	str.w	r8, [r0, #36]	; 0x24
+	NOP
+ 8000206:	bf00      	nop
+	NOP
+ 8000208:	bf00      	nop
+
+	BX LR
+ 800020a:	4770      	bx	lr
+
+0800020c <delay_loop>:
+
+delay_loop:
+    LDR R0, =TIM2 @  load the base address for the timer
+ 800020c:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
+
+08000210 <wait_for_update>:
+wait_for_update:
+    LDRB R1, [R0, #TIM_SR] @ load a byte from TIM_SR
+ 8000210:	7c01      	ldrb	r1, [r0, #16]
+    ANDS R1, R1, #0x1 @ Check UIF flag
+ 8000212:	f011 0101 	ands.w	r1, r1, #1
+    BEQ wait_for_update @ if there is no flag rising, waiting for flag
+ 8000216:	d0fb      	beq.n	8000210 <wait_for_update>
+    MOV R2, #0x0
+ 8000218:	f04f 0200 	mov.w	r2, #0
+    STRB R2, [R0, #TIM_SR] @ clean the flag
+ 800021c:	7402      	strb	r2, [r0, #16]
+    BX LR
+ 800021e:	4770      	bx	lr
+
+08000220 <main>:
+
+
+@ this is the entry function called from the startup file
+main:
+
+	BL enable_timer2_clock
+ 8000220:	f7ff ffd8 	bl	80001d4 <enable_timer2_clock>
+	BL enable_peripheral_clocks
+ 8000224:	f7ff ffdc 	bl	80001e0 <enable_peripheral_clocks>
+	BL initialise_discovery_board
+ 8000228:	f7ff ffe0 	bl	80001ec <initialise_discovery_board>
+
+	@ store a value for the prescaler
+	LDR R0, =TIM2	@ load the base address for the timer
+ 800022c:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
+	@ Then, counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1), which is 8MHz/(7+1)=1MHz
+	MOV R1, #0x07 @ with delay period 1 microsecond
+ 8000230:	f04f 0107 	mov.w	r1, #7
+	STR R1, [R0, TIM_PSC] @ set the prescaler register
+ 8000234:	6281      	str	r1, [r0, #40]	; 0x28
+
+	@ see the notes in the trigger_prescaler function
+	BL trigger_prescaler
+ 8000236:	f7ff ffde 	bl	80001f6 <trigger_prescaler>
+
+	@ start the counter and auto-reload running
+	LDR R0, =TIM2	@ load the base address for the timer
+ 800023a:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
+	LDR R1, [R0, #TIM_CR1]  @ load the current value of the control registers
+ 800023e:	6801      	ldr	r1, [r0, #0]
+	ORR R1, 1 << 7 | 1 << 0 @ 7st bit is enable Auto-reload preload, 0 is enable Counter
+ 8000240:	f041 0181 	orr.w	r1, r1, #129	; 0x81
+	STR R1, [R0, #TIM_CR1] @ enable the counter and Auto-reload preload
+ 8000244:	6001      	str	r1, [r0, #0]
+
+08000246 <LED_on_loop>:
+
+LED_on_loop:
+	LDR R0, =GPIOE  @ load the address of the GPIOE register into R0
+ 8000246:	4808      	ldr	r0, [pc, #32]	; (8000268 <LED_off_loop+0x14>)
+	@ store the current light pattern (binary mask) in R7
+	LDR R7, =0b01010101 @ load a pattern for the set of LEDs (every second one is on)
+ 8000248:	f04f 0755 	mov.w	r7, #85	; 0x55
+	STRB R7, [R0, #ODR + 1]   @ store this to the second byte of the ODR (bits 8-15)
+ 800024c:	7547      	strb	r7, [r0, #21]
+	BL delay_loop
+ 800024e:	f7ff ffdd 	bl	800020c <delay_loop>
+	B LED_off_loop
+ 8000252:	e7ff      	b.n	8000254 <LED_off_loop>
+
+08000254 <LED_off_loop>:
+
+LED_off_loop:
+	LDR R0, =GPIOE  @ load the address of the GPIOE register into R0
+ 8000254:	4804      	ldr	r0, [pc, #16]	; (8000268 <LED_off_loop+0x14>)
+	@ store the current light pattern (binary mask) in R7
+	LDR R7, =0b00000000 @ load a pattern for the set of LEDs (every second one is on)
+ 8000256:	f04f 0700 	mov.w	r7, #0
+	STRB R7, [R0, #ODR + 1]   @ store this to the second byte of the ODR (bits 8-15)
+ 800025a:	7547      	strb	r7, [r0, #21]
+	BL delay_loop
+ 800025c:	f7ff ffd6 	bl	800020c <delay_loop>
+	B LED_on_loop
+ 8000260:	e7f1      	b.n	8000246 <LED_on_loop>
+ 8000262:	0000      	.short	0x0000
+	LDR R0, =RCC	@ load the base address for the timer
+ 8000264:	40021000 	.word	0x40021000
+	LDR R0, =GPIOE 	@ load the address of the GPIOE register into R0
+ 8000268:	48001000 	.word	0x48001000
+	LDR R1, =0xf4240 @ make the timer overflow after counting to 1000000
+ 800026c:	000f4240 	.word	0x000f4240
+
+08000270 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8000270:	480d      	ldr	r0, [pc, #52]	; (80002a8 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8000272:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 8000274:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8000278:	480c      	ldr	r0, [pc, #48]	; (80002ac <LoopForever+0x6>)
+  ldr r1, =_edata
+ 800027a:	490d      	ldr	r1, [pc, #52]	; (80002b0 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 800027c:	4a0d      	ldr	r2, [pc, #52]	; (80002b4 <LoopForever+0xe>)
+  movs r3, #0
+ 800027e:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 8000280:	e002      	b.n	8000288 <LoopCopyDataInit>
+
+08000282 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 8000282:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8000284:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8000286:	3304      	adds	r3, #4
+
+08000288 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8000288:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 800028a:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 800028c:	d3f9      	bcc.n	8000282 <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 800028e:	4a0a      	ldr	r2, [pc, #40]	; (80002b8 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 8000290:	4c0a      	ldr	r4, [pc, #40]	; (80002bc <LoopForever+0x16>)
+  movs r3, #0
+ 8000292:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8000294:	e001      	b.n	800029a <LoopFillZerobss>
+
+08000296 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8000296:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000298:	3204      	adds	r2, #4
+
+0800029a <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 800029a:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 800029c:	d3fb      	bcc.n	8000296 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 800029e:	f000 f811 	bl	80002c4 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 80002a2:	f7ff ffbd 	bl	8000220 <main>
+
+080002a6 <LoopForever>:
+
+LoopForever:
+  b LoopForever
+ 80002a6:	e7fe      	b.n	80002a6 <LoopForever>
+  ldr   r0, =_estack
+ 80002a8:	2000a000 	.word	0x2000a000
+  ldr r0, =_sdata
+ 80002ac:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 80002b0:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 80002b4:	0800032c 	.word	0x0800032c
+  ldr r2, =_sbss
+ 80002b8:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 80002bc:	2000001c 	.word	0x2000001c
+
+080002c0 <ADC1_2_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 80002c0:	e7fe      	b.n	80002c0 <ADC1_2_IRQHandler>
+	...
+
+080002c4 <__libc_init_array>:
+ 80002c4:	b570      	push	{r4, r5, r6, lr}
+ 80002c6:	4d0d      	ldr	r5, [pc, #52]	; (80002fc <__libc_init_array+0x38>)
+ 80002c8:	4c0d      	ldr	r4, [pc, #52]	; (8000300 <__libc_init_array+0x3c>)
+ 80002ca:	1b64      	subs	r4, r4, r5
+ 80002cc:	10a4      	asrs	r4, r4, #2
+ 80002ce:	2600      	movs	r6, #0
+ 80002d0:	42a6      	cmp	r6, r4
+ 80002d2:	d109      	bne.n	80002e8 <__libc_init_array+0x24>
+ 80002d4:	4d0b      	ldr	r5, [pc, #44]	; (8000304 <__libc_init_array+0x40>)
+ 80002d6:	4c0c      	ldr	r4, [pc, #48]	; (8000308 <__libc_init_array+0x44>)
+ 80002d8:	f000 f818 	bl	800030c <_init>
+ 80002dc:	1b64      	subs	r4, r4, r5
+ 80002de:	10a4      	asrs	r4, r4, #2
+ 80002e0:	2600      	movs	r6, #0
+ 80002e2:	42a6      	cmp	r6, r4
+ 80002e4:	d105      	bne.n	80002f2 <__libc_init_array+0x2e>
+ 80002e6:	bd70      	pop	{r4, r5, r6, pc}
+ 80002e8:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80002ec:	4798      	blx	r3
+ 80002ee:	3601      	adds	r6, #1
+ 80002f0:	e7ee      	b.n	80002d0 <__libc_init_array+0xc>
+ 80002f2:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80002f6:	4798      	blx	r3
+ 80002f8:	3601      	adds	r6, #1
+ 80002fa:	e7f2      	b.n	80002e2 <__libc_init_array+0x1e>
+ 80002fc:	08000324 	.word	0x08000324
+ 8000300:	08000324 	.word	0x08000324
+ 8000304:	08000324 	.word	0x08000324
+ 8000308:	08000328 	.word	0x08000328
+
+0800030c <_init>:
+ 800030c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800030e:	bf00      	nop
+ 8000310:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000312:	bc08      	pop	{r3}
+ 8000314:	469e      	mov	lr, r3
+ 8000316:	4770      	bx	lr
+
+08000318 <_fini>:
+ 8000318:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800031a:	bf00      	nop
+ 800031c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800031e:	bc08      	pop	{r3}
+ 8000320:	469e      	mov	lr, r3
+ 8000322:	4770      	bx	lr
