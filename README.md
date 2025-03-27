@@ -52,7 +52,7 @@
         Change the input string in line 7 to whatever you want. This will be the string which will be encoded/decoded.
         Change the number in line 14 to change the value at which it shifts each letter.
         Step through the code until it reaches 'finished'.
-        The final encoded/decoded string will be stored in R0. Convert it into ASCII to read the string.
+        The final encoded/decoded string will be stored in R0. Convert it into ASCII to read the ciphered/deciphered string.
         
     Exercise 2:
       For a:
