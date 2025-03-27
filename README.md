@@ -152,6 +152,8 @@
         
 
     Exercise 5:
+        This exercise integrates functionalities from other exercises. The computer uses serial communication to send a message to a microcontroller, which checks whether the message is a palindrome; if it is,           it encrypts the message and sends it, otherwise it sends the message directly to a second microcontroller. The second microcontroller decrypts the message and, at 500-millisecond intervals, displays the          occurrence count of each vowel letter via LED lights. This task involves serial communication (between the computer and the microcontroller as well as between microcontrollers), string and memory       
+        manipulation, digital I/O, and hardware timers.
       
 
   Test procedures:
