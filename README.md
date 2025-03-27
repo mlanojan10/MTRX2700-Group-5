@@ -187,7 +187,7 @@
         Change the delay size in line 42 to a larger number to see the LEDs alternate slower for a better look at the transition.
 
       For b:
-        Comment out lines 51 and 52 to prevent the LEDs from turning off on button press once they are all turned on.
+        Comment out lines 43 and 44 to prevent the LEDs from turning off on button press once they are all turned on.
         Change the value of the bit string in line 13 to test whether the LED display is working properly. They will be initially set to whatever pattern you input after 0b, where 1 will make the LED on and 0 will make the LED off.
         Replace the button_down function with this code, which will just turn on and off 1 LED, to test whether the button is working and being read properly:
         button_down:
@@ -198,14 +198,14 @@
           BL delay_function
           B idle_on
 
-        Change the value of #1 in line 54 to change the next led that will turn on with button press. (Eg. if you change it to #2, every second LED will turn on with button press.) This will also allow you to check that the LEDs do not start turning off unless they are all on)
+        Change the value of #1 in line 46 to change the next led that will turn on with button press. (Eg. if you change it to #2, every second LED will turn on with button press.) This will also allow you to check that the LEDs do not start turning off unless they are all on)
 
         For c:
           Use testing procedures listed above for part b.
 
           Change the value of the bit string in line 13 to test whether the LED display is working properly. Change all of the 0s after '0b' to 1s to test if there is an issue with the way the LEDs turn off.
-          Change the value of #1 in line 54 to change the next led that will turn on with button press. (Eg. if you change it to #2, every second LED will turn on with button press.) This will also allow you to check that the LEDs do not start turning off unless they are all on)
-          Change the value of #1 in line 73 to change how many leds will turn off with button press. (Eg. if you change it to #2, LEDs will turn off in pairs on button press.) This will allow you to check if they are turning off correctly.
+          Change the value of #1 in line 46 to change the next led that will turn on with button press. (Eg. if you change it to #2, every second LED will turn on with button press.) This will also allow you to check that the LEDs do not start turning off unless they are all on)
+          Change the value of #1 in line 65 to change how many leds will turn off with button press. (Eg. if you change it to #2, LEDs will turn off in pairs on button press.) This will allow you to check if they are turning off correctly.
 
         For d:
         Change the string "Hello\0" in line 13 to whatever string you want to be analyzed. For testing it is easier to use a small amount of characters so that you know the bit value of the number of vowels and consonants.
