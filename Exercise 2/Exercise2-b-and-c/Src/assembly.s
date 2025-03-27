@@ -51,9 +51,8 @@ button_down:
 	CMP R5, #0XFF	@ Check if all LEDs are on
 	BEQ turn_off_leds	@ If so, start turning them off
 
-	ORR R5, R5, R5, LSR #7	@ Shift and OR to update state
-	ADD R5, R5, R5	@ Double the value
-	ORR R5, R5, #0X01	@ Ensure LSB is set
+	LSL R5, R5, #1 @ Change number of LEDs on
+    ORR R5, R5, #0x01
 
 	STRB R5, [R4]	@ Store updated LED state
 	LDR R0, =GPIOE	@ Load GPIOE base address
