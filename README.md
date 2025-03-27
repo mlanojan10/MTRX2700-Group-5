@@ -301,3 +301,4 @@
         If using a simulator, watch the Registers or Watches panel for ODR and timer-related changes.
               
     Exercise 5:
+    For code that is used from previous parts, test them as individual files using the methods listed above.
