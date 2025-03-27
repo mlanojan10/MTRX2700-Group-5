@@ -167,6 +167,11 @@
         When you continue stepping through and reach 'finished_string', the monitor should display a fully converted string.
 
       For b:
+        Change the 'input_string' to whatever you want. Have a mix of upper or lower case letters, and special characters. Set it to a known palindrome to reach 'is_palindrome' in the code
+        With the 'assembly.s file open, press the debug button, which will run the program in debug mode.
+        Look for the 'registers' tab, and have 'General Register' open.
+        Step through the code.
+        When you continue stepping through and reach 'finished_string', look at the value stored in r0, it should show a value of 0 if the input string doesn't classify as a palindrome, and a value of 1 if it does.
         
       
       For c:
