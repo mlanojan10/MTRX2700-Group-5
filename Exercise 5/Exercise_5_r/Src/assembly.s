@@ -4,7 +4,6 @@
 .global main
 
 
-#include "lower_conversion.s"
 #include "initialise.s"
 #include "cipher.s"
 
@@ -19,7 +18,7 @@ incoming_buffer: .space 62
 user_defined_terminating_character: .asciz "#"
 
 @ define checking list
-checking_list: .string "0abcdefghijklmnopqrstuvwxyz"
+checking_list: .string "0aeiou"
 
 .text
 @ define text
@@ -77,9 +76,9 @@ loop_forever:
 	CMP R2, R6 @ check that the termination character has been reached
 	BNE no_reset
 
-	BL cipher_main @decipher the string
-	BL lower_conversion_main @convert the result to lowercase
+	B cipher_main @decipher the string
 
+LED_pre:
 	LDR R4, =USART1 @ the base address for the register to set up UART
 
 	STRB R2, [R1, R3] @Re-add the terminating character (the recieving loop removes it)

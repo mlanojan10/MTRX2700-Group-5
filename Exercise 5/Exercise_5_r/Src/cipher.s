@@ -1,82 +1,66 @@
 .syntax unified
-
 .thumb
 
 .global main
 
 .data
 
-alphabet_string: .asciz "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\0"
-substitution_cipher_string: .asciz "eqhygmsuifdrlzvoktncjwpxbaEQHYGMSUIFDRLZVOKTNCJWPXBA\0"
-
 .text
 
-@ Loading various parameters
+@ Exercise  1 c)
 cipher_main:
 
-	LDR R8, =0x01 @Desired cypher cycles.
-	LDR R12, =alphabet_string @Load the address of the alphabet string into register R3.
-	LDR R4, =substitution_cipher_string @Load the address of the substitution cipher string into register R4.
-	LDR R5, =0x-01 @Index of input string.
-	LDR R6, =0x00 @Index of alphabet/substitution cipher string.
+   	MOV R0, #-3             @ Shift value (Change for encoding/decoding)
 
-@ Checks if the number of desired substitution cycles have been completed.
-program_loop:
+    BL caesar_cipher       @ Call Caesar Cipher function
 
-	CMP R8, #0x00 @Checks if the desired number of cycles have been completed.
-	BEQ return @Terminates the program if the desired number of cycles had been completed.
+    B LED_pre
 
-@Traverses the string, then calls for decryption.
-traverse_string_loop:
+@ Function: Apply Caesar Cipher with shift value in R2
+caesar_cipher:
+    PUSH {LR}              @ Save return address
+    MOV R4, R1             @ Copy string address into R4 (iterator)
 
-	ADD R5, #0x01 @Increments the index for the input string traversal.
-	LDRB R7, [R1, R5] @Loads the character of the string at the offset of the increment.
+cipher_loop:
+    LDRB R5, [R4]          @ Load current character
+    CMP R5, #0             @ Check if null terminator
+    BEQ cipher_done        @ If null, exit function
 
-	CMP R7, R2 @Checks if the null termination character has been reached.
-	BEQ subtract_cycle @Subtracts one from the remaining cycles (desired cycles).
+    CMP R5, #'A'           @ Check if char is >= 'A'
+    BLT check_lower        @ If less, check lowercase range
+    CMP R5, #'Z'           @ Check if char is <= 'Z'
+    BLE shift_upper        @ If in uppercase range, shift it
 
-	B traverse_substitution_cipher @Traverses through the substitution cipher, looking for a match with the current input string character.
+check_lower:
+    CMP R5, #'a'           @ Check if char is >= 'a'
+    BLT next_char          @ If less, it's not a letter, skip
+    CMP R5, #'z'           @ Check if char is <= 'z'
+    BLE shift_lower        @ If in lowercase range, shift it
+    B next_char            @ Otherwise, move to next character
 
-@Traverses the alphabet, comparing it with the string character, then decoding the string character if it is a match.
-traverse_substitution_cipher:
+@ Shift uppercase letters
+shift_upper:
+    ADD R5, R5, R0         @ Apply shift
+    CMP R5, #'Z'           @ Check if it exceeds 'Z'
+    BLE store_char         @ If within range, store
+    SUB R5, R5, #26        @ Wrap around
+    B store_char
 
-	LDRB R10, [R4, R6] @Loads the character of the substitution cipher at the offset of the substitution cipher increment.
+@ Shift lowercase letters
+shift_lower:
+    ADD R5, R5, R0         @ Apply shift
+    CMP R5, #'z'           @ Check if it exceeds 'z'
+    BLE store_char         @ If within range, store
+    SUB R5, R5, #26        @ Wrap around
 
-	CMP R10, #0x00 @Checks if the null termination character has been reached.
-	BEQ letter_not_found
+store_char:
+    STRB R5, [R4]          @ Store modified character
 
-	CMP R7, R10 @Checks if the current character of the alphabet matches the current character of the input string.
-	BEQ decode_character @Gets the corresponding substitution cipher character.
+next_char:
+    ADD R4, R4, #1         @ Move to next character
+    B cipher_loop          @ Repeat loop
 
-	ADD R6, #0x01 @Increments the index of the substitution cipher.
+cipher_done:
+    POP {LR}               @ Restore return address
+    BX LR                  @ Return
 
-	B traverse_substitution_cipher @Recalls for the next index of the substitution cipher.
-
-@Decoding the string character with the corresponding substitution cipher value.
-decode_character:
-
-	LDRB R11, [R12, R6] @Loads the corresponding substitution alphabet based off the offset of the cipher character string.
-	STRB R11, [R1, R5] @Overwrites the input string data with the alphabet data.
-
-	LDR R6, =0x00 @Resets the index of the cipher character to the start.
-
-	B traverse_string_loop @Recalls for the next index of the input string.
-
-@Removes one from the desired substitution cycles count.
-subtract_cycle:
-
-	LDR R5, =0x-01 @Resets the index of the input string to the start.
-	SUB R8, 0x01 @Subtracts one from the remaining cycles (desired cycles).
-	B program_loop @Calls for a start of the next cycle.
-
-@Where a letter is not found, the index of alphabet/substitution cipher string is reset.
-letter_not_found:
-
-	LDR R6, =0x00
-
-	B traverse_string_loop
-
-@Substitution cipher complete, returns back to transmission process
-return:
-
-	BX LR @ return

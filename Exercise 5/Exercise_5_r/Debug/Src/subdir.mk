@@ -8,22 +8,19 @@ S_SRCS += \
 ../Src/assembly.s \
 ../Src/cipher.s \
 ../Src/definitions.s \
-../Src/initialise.s \
-../Src/lower_conversion.s 
+../Src/initialise.s 
 
 OBJS += \
 ./Src/assembly.o \
 ./Src/cipher.o \
 ./Src/definitions.o \
-./Src/initialise.o \
-./Src/lower_conversion.o 
+./Src/initialise.o 
 
 S_DEPS += \
 ./Src/assembly.d \
 ./Src/cipher.d \
 ./Src/definitions.d \
-./Src/initialise.d \
-./Src/lower_conversion.d 
+./Src/initialise.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -33,7 +30,7 @@ Src/%.o: ../Src/%.s Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/assembly.d ./Src/assembly.o ./Src/cipher.d ./Src/cipher.o ./Src/definitions.d ./Src/definitions.o ./Src/initialise.d ./Src/initialise.o ./Src/lower_conversion.d ./Src/lower_conversion.o
+	-$(RM) ./Src/assembly.d ./Src/assembly.o ./Src/cipher.d ./Src/cipher.o ./Src/definitions.d ./Src/definitions.o ./Src/initialise.d ./Src/initialise.o
 
 .PHONY: clean-Src
 
