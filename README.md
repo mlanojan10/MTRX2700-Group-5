@@ -7,6 +7,8 @@
     Explain code for Exercise 3
     
     Demonstrate code for Exercise 3
+
+    Compile code for Exercise 5
     
   Wenxuan Duan:
   
