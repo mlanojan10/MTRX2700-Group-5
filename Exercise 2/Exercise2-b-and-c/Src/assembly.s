@@ -52,7 +52,7 @@ button_down:
 	BEQ turn_off_leds	@ If so, start turning them off
 
 	LSL R5, R5, #1 @ Change number of LEDs on
-    ORR R5, R5, #0x01
+    	ORR R5, R5, #0x01
 
 	STRB R5, [R4]	@ Store updated LED state
 	LDR R0, =GPIOE	@ Load GPIOE base address
