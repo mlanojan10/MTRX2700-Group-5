@@ -214,6 +214,7 @@
           MOV R5, #16 @ Loads a value of 16 into the consonant count
           BL display_result
         This will allow you to see if there is an issue with the counting logic.
+        The code will defaultly display the vowel count, so you can see if it has counted it correctly from there. You can change it to initially display the consonant count to check if it has counted them correctly by changing R4 to R5 in line 184.
           
 
           
